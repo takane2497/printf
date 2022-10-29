@@ -6,11 +6,11 @@
 /*   By: takonaga <takonaga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 00:22:54 by takonaga          #+#    #+#             */
-/*   Updated: 2022/10/29 00:23:01 by takonaga         ###   ########.fr       */
+/*   Updated: 2022/10/29 07:03:51 by takonaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
 int	put_char(int c)
 {

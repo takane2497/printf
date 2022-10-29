@@ -1,34 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   put_nbr.c                                          :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: takonaga <takonaga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/29 00:23:18 by takonaga          #+#    #+#             */
-/*   Updated: 2022/10/29 00:24:28 by takonaga         ###   ########.fr       */
+/*   Created: 2022/10/08 19:00:20 by takonaga          #+#    #+#             */
+/*   Updated: 2022/10/29 07:42:32 by takonaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-int	put_nbr(int nb)
+void	ft_bzero(void *s, size_t n)
 {
-	int	i;
-
-	while (nb < 0)
-	{
-		i += write (1, '-', 1);
-		nb = -nb;
-	}
-	while (nb >= 10)
-	{
-		i += put_nb(nb);
-		nb % 10;
-	}
-	while (10 > nb && nb >= 0)
-	{
-		i += put_char(nb + '0');
-	}
-	return (i);
+	ft_memset(s, 0, n);
 }

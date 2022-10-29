@@ -6,33 +6,33 @@
 /*   By: takonaga <takonaga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 16:03:21 by takonaga          #+#    #+#             */
-/*   Updated: 2022/10/29 04:12:53 by takonaga         ###   ########.fr       */
+/*   Updated: 2022/10/29 07:49:39 by takonaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-int	check_formats(va_list ap, const char format)
+static	int	check_formats(va_list ap, const char format)
 {
 	int	len;
 
 	len = 0;
 	if (format == 'c')
-		len += print_char(va_arg(ap, int));
+		len += put_char(va_arg(ap, int));
 	else if (format == 's')
 		len += print_str(va_arg(ap, char *));
 	else if (format == 'p')
 		len += print_pointer(va_arg(ap, uint64_t));
 	else if (format == 'd' || format == 'i')
-		len += print_nbr(va_arg(ap, int));
+		len += put_nb(va_arg(ap, int));
 	else if (format == 'u')
-		len += print_nbr(va_arg(ap, unsigned int));
+		len += print_unsigned(va_arg(ap, unsigned int));
 	else if ((format == 'x' || format == 'X' ))
 		len += print_hex(va_arg(ap, unsigned int), format);
 	else if (format == '%')
-		len += print_percent();
+		len += put_percent();
 	return (len);
-}
+}	
 
 int	ft_printf(const char *format, ...)
 {

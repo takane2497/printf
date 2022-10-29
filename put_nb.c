@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   put_nb.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: takonaga <takonaga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/24 16:05:14 by takonaga          #+#    #+#             */
-/*   Updated: 2022/10/24 17:16:35 by takonaga         ###   ########.fr       */
+/*   Created: 2022/10/29 00:23:18 by takonaga          #+#    #+#             */
+/*   Updated: 2022/10/29 07:44:23 by takonaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "ft_printf.h"
 
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdarg.h>
+int	put_nb(int n)
+{
+	int		len;
+	char	*nb;
 
-int	ft_printf(const char *format, ...);
-
-
-#endif
+	len = 0;
+	nb = ft_itoa(n);
+	len = print_str(nb);
+	free(nb);
+	return (len);
+}

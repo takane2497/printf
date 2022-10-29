@@ -1,43 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_str.c                                        :+:      :+:    :+:   */
+/*   put_percent.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: takonaga <takonaga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/29 04:08:02 by takonaga          #+#    #+#             */
-/*   Updated: 2022/10/29 07:03:43 by takonaga         ###   ########.fr       */
+/*   Created: 2022/10/29 04:07:41 by takonaga          #+#    #+#             */
+/*   Updated: 2022/10/29 07:04:08 by takonaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static	void	put_str(char *str)
+int	put_percent(void)
 {
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		write (1, &str[i], 1);
-		i++;
-	}
-}
-
-int	print_str(char *str)
-{
-	int	i;
-
-	i = 0;
-	if (str == NULL)
-	{
-		put_str("(null)");
-		return (6);
-	}
-	while (str[i])
-	{
-		write(1, &str[i], 1);
-		i++;
-	}
-	return (i);
+	write(1, "%", 1);
+	return (1);
 }

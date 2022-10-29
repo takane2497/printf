@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_hex.c                                        :+:      :+:    :+:   */
+/*   print_unsigned.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: takonaga <takonaga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/29 04:07:19 by takonaga          #+#    #+#             */
-/*   Updated: 2022/10/29 07:03:21 by takonaga         ###   ########.fr       */
+/*   Created: 2022/10/29 07:49:40 by takonaga          #+#    #+#             */
+/*   Updated: 2022/10/29 09:06:47 by takonaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static	int	hex_len(unsigned int nb)
+static int	nb_len(unsigned int nb)
 {
 	int	len;
 
@@ -20,37 +20,43 @@ static	int	hex_len(unsigned int nb)
 	while (nb != 0)
 	{
 		len++;
-		nb = nb / 16;
+		nb = nb / 10;
 	}
 	return (len);
 }
 
-static	void	put_hex(unsigned int nb, const char format)
+static	char	*uitoa(unsigned int n)
 {
-	if (nb >= 16)
+	char	*nb;
+	int		len;
+
+	len = nb_len(n);
+	nb = (char *)malloc(sizeof(char) * (len +1));
+	if (!nb)
+		return (0);
+	nb[len] = '\0';
+	while (n != 0)
 	{
-		put_hex(nb / 16, format);
-		put_hex(nb % 16, format);
+		nb[len - 1] = n % 10 + '0';
+		n = n / 10;
+		len--;
 	}
-	else
-	{
-		if (nb <= 9)
-			put_char((nb + '0'));
-		else
-		{
-			if (format == 'x')
-				put_char(nb - 10 + 'a');
-			if (format == 'X')
-				put_char(nb -10 + 'A');
-		}
-	}
+	return (nb);
 }
 
-int	print_hex(unsigned int nb, const char format)
+int	print_unsigned(unsigned int n)
 {
-	if (nb == 0)
-		return (write(1, "0", 1));
+	int		len;
+	char	*nb;
+
+	len = 0;
+	if (n == 0)
+		len += write(1, "0", 1);
 	else
-		put_hex(nb, format);
-	return (hex_len(nb));
+	{
+		nb = uitoa(n);
+		len += print_str(nb);
+		free(nb);
+	}
+	return (len);
 }
